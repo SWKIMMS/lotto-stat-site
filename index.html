@@ -22,48 +22,19 @@
 
         <div class="layout">
           <aside class="control-panel" aria-label="추천 설정">
-            <div class="panel-block">
-              <span class="label">전략</span>
-              <div class="segment" role="group" aria-label="전략 선택">
-                <button class="segment-button active" type="button" data-mode="balanced">균형형</button>
-                <button class="segment-button" type="button" data-mode="frequency">빈도형</button>
-                <button class="segment-button" type="button" data-mode="overdue">미출현형</button>
-              </div>
+            <div class="action-stack">
+              <button id="purchase-mode" class="primary-action" type="button">실제 구매용 5조합 다시 뽑기</button>
             </div>
-
-            <div class="panel-block two-column">
-              <label class="field">
-                <span class="label">추천 수</span>
-                <input id="set-count" type="number" min="1" max="10" value="5" />
-              </label>
-              <label class="field">
-                <span class="label">후보 강도</span>
-                <input id="sample-size" type="number" min="600" max="6000" step="200" value="2600" />
-              </label>
-            </div>
-
-            <div class="panel-block toggles">
-              <label class="toggle">
-                <input id="allow-consecutive" type="checkbox" checked />
-                <span>연속번호 허용</span>
-              </label>
-              <label class="toggle">
-                <input id="include-bonus" type="checkbox" />
-                <span>보너스번호 반영</span>
-              </label>
-            </div>
-
-            <button id="generate" class="primary-action" type="button">조합 다시 만들기</button>
             <p class="notice">당첨 보장 없음</p>
           </aside>
 
           <section class="results-area" aria-label="추천 조합">
             <div class="section-head">
               <div>
-                <p class="eyebrow">Sets</p>
-                <h2>추천 조합</h2>
+                <p class="eyebrow">Purchase</p>
+                <h2>실제 구매용 번호</h2>
               </div>
-              <span id="strategy-note" class="pill">균형형</span>
+              <span id="strategy-note" class="pill">5조합</span>
             </div>
             <div id="recommendations" class="recommendations"></div>
           </section>

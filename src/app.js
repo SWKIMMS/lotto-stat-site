@@ -6,15 +6,10 @@
   const state = {
     mode: "balanced",
     setCount: 5,
-    sampleSize: 2600,
+    sampleSize: 6000,
     allowConsecutive: true,
-    includeBonus: false
-  };
-
-  const MODE_LABELS = {
-    balanced: "균형형",
-    frequency: "빈도형",
-    overdue: "미출현형"
+    includeBonus: false,
+    purchaseMode: true
   };
 
   function clamp(value, min, max) {
@@ -519,16 +514,8 @@
   }
 
   function syncControls() {
-    $$(".segment-button").forEach((button) => {
-      const active = button.dataset.mode === state.mode;
-      button.classList.toggle("active", active);
-      button.setAttribute("aria-pressed", active ? "true" : "false");
-    });
-    $("#strategy-note").textContent = MODE_LABELS[state.mode];
-    $("#set-count").value = String(state.setCount);
-    $("#sample-size").value = String(state.sampleSize);
-    $("#allow-consecutive").checked = state.allowConsecutive;
-    $("#include-bonus").checked = state.includeBonus;
+    $("#strategy-note").textContent = "5조합";
+    $("#purchase-mode").setAttribute("aria-pressed", state.purchaseMode ? "true" : "false");
   }
 
   function render() {
@@ -549,34 +536,13 @@
   }
 
   function bindEvents() {
-    $$(".segment-button").forEach((button) => {
-      button.addEventListener("click", () => {
-        state.mode = button.dataset.mode;
-        render();
-      });
-    });
-
-    $("#set-count").addEventListener("input", (event) => {
-      state.setCount = clamp(Number(event.target.value) || 5, 1, 10);
-    });
-
-    $("#sample-size").addEventListener("input", (event) => {
-      state.sampleSize = clamp(Number(event.target.value) || 2600, 600, 6000);
-    });
-
-    $("#allow-consecutive").addEventListener("change", (event) => {
-      state.allowConsecutive = event.target.checked;
-      render();
-    });
-
-    $("#include-bonus").addEventListener("change", (event) => {
-      state.includeBonus = event.target.checked;
-      render();
-    });
-
-    $("#generate").addEventListener("click", () => {
-      state.setCount = clamp(Number($("#set-count").value) || 5, 1, 10);
-      state.sampleSize = clamp(Number($("#sample-size").value) || 2600, 600, 6000);
+    $("#purchase-mode").addEventListener("click", () => {
+      state.mode = "balanced";
+      state.setCount = 5;
+      state.sampleSize = 6000;
+      state.allowConsecutive = true;
+      state.includeBonus = false;
+      state.purchaseMode = true;
       render();
     });
   }
